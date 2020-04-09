@@ -1,9 +1,8 @@
-<html lang="de">
-<head>
-    <meta charset="UTF-8">
-    <title>{{ title }}</title>
-</head>
-<body>
+{% extends "base.html" %}
+
+{% block content %}
     <h1>{{ time }}</h1>
-</body>
-</html>
+    {% for question in questions %}
+    <div><p>{{ question }}</p></div>
+    {% endfor %}
+{%  endblock %}
