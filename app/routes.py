@@ -1,6 +1,7 @@
 from flask import render_template
 from app import app
 import datetime
+from app.forms import LoginForm
 
 
 @app.route('/')
@@ -17,4 +18,10 @@ def index():
         }
     ]
 
-    return render_template('index.html', questions=questions, time=time_act)
+    return render_template('index.html', title="Online-Quizsystem", questions=questions, time=time_act)
+
+
+@app.route('/login')
+def login():
+    form = LoginForm()
+    return render_template('login.html', title='Sign In', form=form)
