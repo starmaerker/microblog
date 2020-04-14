@@ -11,18 +11,18 @@ from werkzeug.urls import url_parse
 @app.route('/index')
 @login_required
 def index():
-    time_act = datetime.datetime.now()
-
-    questions = [
+    posts = [
         {
-            'What is love?': 'I dont know.',
-            'Who is it?': 'Michael Jackson',
-            'Where is the gold?': 'Under the Rainbow',
-            'How is the weather?': 'Its sunny.'
+            'author': {'username': 'John'},
+            'body': 'Beautiful day in Portland!'
+        },
+        {
+            'author': {'username': 'Susan'},
+            'body': 'The Avengers movie was so cool!'
         }
     ]
 
-    return render_template('index.html', title="Online-Quizsystem", questions=questions, time=time_act)
+    return render_template('index.html', title="Home Page", posts=posts)
 
 
 @app.route('/login', methods=['GET', 'POST'])
@@ -31,7 +31,7 @@ def login():
         return redirect(url_for('index'))
     form = LoginForm()
     if form.validate_on_submit():
-        user = User.query.filer_by(username=form.username.data).first()
+        user = User.query.filter_by(username=form.username.data).first()
         if user is None or not user.check_password(form.password.data):
             flash('Invalid username or password')
             return redirect(url_for('login'))
