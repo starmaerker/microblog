@@ -8,7 +8,7 @@ import logging
 from logging.handlers import SMTPHandler
 from logging.handlers import RotatingFileHandler
 import os
-from flask_boostrap import Bootstrap
+from flask_bootstrap import Bootstrap
 
 
 app = Flask(__name__)
